@@ -1,0 +1,21 @@
+package_list <- c("baseballr", "tidyverse", "ggjoy")
+lapply(package_list, require, character.only = TRUE)
+
+all_player_seasons <- fg_bat_leaders2(1954, 2016, ind = 1)
+uzr_lookup <- fg_bat_leaders2(2002, 2017, ind = 1)
+
+g1 <- ggplot(filter(player_seasons, as.numeric(Season) > 46), aes(x = HR, y = Season)) + # look at player seasons from 2000 on
+  geom_joy(scale = 3, rel_min_height = 0.01) +
+  theme_joy() +
+  theme(axis.title.y = element_text(angle = 0)) +
+  labs(x = "Home Runs",
+       y = "Season",
+       title = "Home Run Distribution Over Time")
+
+g2 <- ggplot(uzr_look, aes(x = Fld / G, y = Season)) + 
+  geom_joy(scale = 3, rel_min_height = 0.01) +
+  theme_joy() +
+  theme(axis.title.y = element_text(angle = 0)) +
+  labs(x = "UZR / Game",
+       y = "Season",
+       title = "UZR Distribution Over Time")
